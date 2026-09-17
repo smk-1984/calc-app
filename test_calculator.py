@@ -1,5 +1,5 @@
 import pytest
-from calculator import add, subtract, multiply, divide, percentage
+from calculator import add, subtract, multiply, divide, percentage, power
 
 
 def test_add():
@@ -25,3 +25,7 @@ def test_divide_by_zero():
 
 def test_percentage():
     assert percentage(25, 50) == 50.0
+
+
+def test_power():
+    assert power(2, 3) == 8
