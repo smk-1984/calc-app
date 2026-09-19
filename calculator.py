@@ -23,3 +23,11 @@ def percentage(part, whole):
 
 def power(base, exponent):
     return base ** exponent
+
+
+def modulo(a, b):
+    # Guard against modulo-by-zero, since it's mathematically undefined
+    # (mirrors the same check used in divide()).
+    if b == 0:
+        raise ValueError("Cannot divide by zero")
+    return a % b
