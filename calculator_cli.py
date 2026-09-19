@@ -16,6 +16,16 @@ OPERATIONS = {
 }
 
 
+def format_result(value):
+    # CALC-17: argparse forces every operand to float, so a whole-number
+    # result like 5.0 would otherwise print with a confusing trailing .0.
+    # Only whole numbers get the int-style rendering; genuinely fractional
+    # results (e.g. 3.3333333333333335) are printed as-is.
+    if isinstance(value, float) and value.is_integer():
+        return str(int(value))
+    return str(value)
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description="Simple calculator CLI")
     parser.add_argument("operation", choices=OPERATIONS.keys())
@@ -32,7 +42,7 @@ def main(argv=None):
         print(f"Error: {exc}", file=sys.stderr)
         return 1
 
-    print(result)
+    print(format_result(result))
     return 0
 
 
