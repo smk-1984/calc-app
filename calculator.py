@@ -11,8 +11,8 @@ def multiply(a, b):
 
 
 def divide(a, b):
-    # NOTE: this "simplification" is the deliberate regression for CALC-10 —
-    # it removes the zero-check that test_divide_by_zero relies on.
+    if b == 0:
+        raise ValueError("Cannot divide by zero")
     return a / b
 
 
