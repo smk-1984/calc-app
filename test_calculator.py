@@ -1,5 +1,5 @@
 import pytest
-from calculator import add, subtract, multiply, divide, percentage, power
+from calculator import add, subtract, multiply, divide, percentage, power, modulo
 
 
 def test_add():
@@ -29,3 +29,18 @@ def test_percentage():
 
 def test_power():
     assert power(2, 3) == 8
+
+
+def test_modulo():
+    assert modulo(10, 3) == 1
+
+
+def test_modulo_by_zero():
+    with pytest.raises(ValueError):
+        modulo(10, 0)
+
+
+def test_modulo_negative_numbers():
+    # Python's % follows the sign of the divisor, e.g. -7 % 3 == 2 (not -1)
+    assert modulo(-7, 3) == 2
+    assert modulo(7, -3) == -2
